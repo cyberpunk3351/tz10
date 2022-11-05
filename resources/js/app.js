@@ -1,20 +1,16 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
+import './bootstrap';
+import './sass/app.sass';
 
-export default defineConfig({
-    plugins: [
-        laravel({
-            input: 'resources/js/app.js',
-            refresh: true,
-        }),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
-        }),
-    ],
+import { createApp, h } from 'vue';
+import router from "./route";
+
+import main from './Pages/app.vue'
+
+const app  = createApp({
+    render: ()=>h(main)
 });
+
+app
+    .use(router)
+    .mount('#app')
+
