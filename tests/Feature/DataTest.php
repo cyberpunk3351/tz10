@@ -18,20 +18,22 @@ class DataTest extends TestCase
         parent::setUp();
 
         $this->allData = [
-            "array" => [
-                1,
-                2,
-                3
-            ],
-            "boolean" => true,
-            "color" => "gold",
-            "null" => null,
-            "number" => 123,
-            "object" => [
-                "a" => "b",
-                "c" => "d"
-            ],
-            "string" => "Hello World"
+            "data" => [
+                "array" => [
+                    1,
+                    2,
+                    3
+                ],
+                "boolean" => true,
+                "color" => "gold",
+                "null" => null,
+                "number" => 123,
+                "object" => [
+                    "a" => "b",
+                    "c" => "d"
+                ],
+                "string" => "Hello World"
+            ]
         ];
     }
 
