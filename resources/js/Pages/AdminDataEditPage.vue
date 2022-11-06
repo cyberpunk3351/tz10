@@ -6,7 +6,6 @@
                     <!--                <form >-->
                     <form @submit.prevent="saveJson" class="w-96">
                         <div class="mb-6">
-                            <!--                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Json Object</label>-->
                             <textarea
                                 id="message"
                                 rows="4"
