@@ -6,27 +6,33 @@ use Illuminate\Console\Command;
 
 class GetToken extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'command:name';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
+    protected $signature = 'get:token {user} {password}';
     protected $description = 'Command description';
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
+
+
     public function handle()
     {
-        return Command::SUCCESS;
+        $http = new \GuzzleHttp\Client;
+
+        $user = $this->argument('user');
+        $password =  $this->argument('password');
+
+        $response = $http->post(config('services.passport.login_endpoint'), [
+            'form_params' => [
+                'grant_type' => 'password',
+                'client_id' => config('services.passport.client_id'),
+                'client_secret' => config('services.passport.client_secret'),
+                'username' => $user,
+                'password' => $password,
+            ]
+        ]);
+
+        $final = $response->getBody();
+
+        return $final;
+
+//        return Command::SUCCESS;
     }
 }
