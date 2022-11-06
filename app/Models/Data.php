@@ -11,12 +11,13 @@ class Data extends Model
     use HasFactory;
 
     protected $fillable = ['data'];
+    protected $casts = ['data' => 'array'];
 
-    protected function data(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => json_decode($value, true),
-            set: fn ($value) => json_encode($value),
-        );
-    }
+//    protected function data(): Attribute
+//    {
+//        return Attribute::make(
+//            get: fn ($value) => json_decode($value, true),
+//            set: fn ($value) => json_encode($value),
+//        );
+//    }
 }

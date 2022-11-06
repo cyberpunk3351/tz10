@@ -31,7 +31,7 @@ class DataController extends Controller
 
 //        dd(json_encode($data));
 
-        $benchTime = Benchmark::measure(fn() => Data::create($request->validated()));
+        $benchTime = Benchmark::measure(fn() => $data);
         $data->benchTime = $benchTime;
 
         return new DataResource(json_decode($data));
