@@ -28,9 +28,13 @@ class DataController extends Controller
 //        dd($request);
 
         $data = Data::create($request->validated());
+
+//        dd(json_encode($data));
+
         $benchTime = Benchmark::measure(fn() => Data::create($request->validated()));
         $data->benchTime = $benchTime;
-        return new DataResource($data);
+
+        return new DataResource(json_decode($data));
     }
 
     /**
@@ -39,21 +43,21 @@ class DataController extends Controller
      * @param  \App\Models\Data  $data
      * @return \Illuminate\Http\Response
      */
-    public function show(Data $data)
+    public function show(Data $data): \Illuminate\Http\Response|DataResource
     {
-        //
+        return new DataResource($data);
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Data  $data
-     * @return \Illuminate\Http\Response
+     * @param DataRequest $request
+     * @param Data $data
+     * @return DataResource
      */
-    public function update(Request $request, Data $data)
+    public function update(DataRequest $request, Data $data): DataResource
     {
-        //
+        $data->update($request->validated());
+        return new DataResource($data);
     }
 
     /**
